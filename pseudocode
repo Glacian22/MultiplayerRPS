@@ -1,0 +1,29 @@
+Rock Paper Scissors 
+
+Make HTML skeleton
+
+Initialize firebase
+
+For only a single 2 player session, have counter on firebase numPlayers
+
+if numPlayers doesn't exist, make it and set to 1
+
+if it does exist, increment to 2
+
+while numPlayers is 1, display "waiting for another player"
+
+when a second player joins, start game
+
+use firebase onDisconnect to detect a dropout, decrement numPlayers
+
+Once game starts, player chooses Rock, Paper, or Scissors via graphics
+
+choice gets pushed to firebase
+
+opponent's choice gets pulled from firebase and compared to player's choice
+
+score variable either increments or stays the same
+
+if score equals victory, display VICTORY and update firebase with victory
+
+client tracks both scores, and can display victory or loss
