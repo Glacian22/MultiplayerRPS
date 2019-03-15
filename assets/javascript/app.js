@@ -1,6 +1,13 @@
+// Initialize Firebase
 var config = {
-    apiKey: "AIzaSyA5eYKsB8T2q6rMGdKSvac6eQsWTzsZEjE",
-    authDomain: "fir-recent-user.firebaseapp.com",
-    databaseURL: "https://fir-recent-user.firebaseio.com",
-    storageBucket: "fir-recent-user.appspot.com"
-  };
+    apiKey: "AIzaSyDeUlG2fljjy2n9ScsJflRLK14TuGxjTcs",
+    authDomain: "rock-paper-scissors-230c5.firebaseapp.com",
+    databaseURL: "https://rock-paper-scissors-230c5.firebaseio.com",
+    projectId: "rock-paper-scissors-230c5",
+    storageBucket: "rock-paper-scissors-230c5.appspot.com",
+    messagingSenderId: "474400211700"
+};
+firebase.initializeApp(config);
+
+// Create a variable to reference the database.
+var database = firebase.database();
