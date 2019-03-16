@@ -11,3 +11,19 @@ firebase.initializeApp(config);
 
 // Create a variable to reference the database.
 var database = firebase.database();
+//client tracking of numPlayers, which is on firebase
+var players;
+
+//check firebase numPlayers
+database.ref().once("value", function (snapshot) {
+    var data = snapshot.val();
+    players = data.numPlayers;
+}).then (function() {
+    if (players < 2){ //if there are less than 2 players
+        players ++;
+        database.ref().child("numPlayers").set(players);
+    }
+    if (players === 2){
+        //start game
+    }
+})
