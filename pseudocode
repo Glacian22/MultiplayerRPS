@@ -27,3 +27,5 @@ score variable either increments or stays the same
 if score equals victory, display VICTORY and update firebase with victory
 
 client tracks both scores, and can display victory or loss
+
+only display opponent's choice if you're made yours
