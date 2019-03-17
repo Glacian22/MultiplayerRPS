@@ -60,10 +60,15 @@ $(document).ready(function () {
         } else {
             //it was an RPS value
             //if it was your opponent's choice, store it locally
+
             if (snapshot.key !== "player" + playerID + "Choice") {
+                console.log("opponent has chosen")
                 theirChoice = snapshot.val();
-                $(".their-choice").hide();
-                $(".their-choice").text("They chose: " + theirChoice);
+                console.log("typeof theirChoice: ", typeof theirChoice);
+                if (theirChoice !== "") {
+                    $(".their-choice").hide();
+                    $(".their-choice").text("They chose: " + theirChoice);
+                }
 
             }
 
@@ -84,7 +89,7 @@ $(document).ready(function () {
     //capture image clicks
     //if string is empty, update choice
     $("img").on("click", function () {
-        if (!myChoice) {
+        if (!myChoice && gameState === "running") {
             myChoice = $(this).attr("value");
             $(".my-choice").text("I chose: " + myChoice);
             database.ref().child("player" + playerID + "Choice").set(myChoice);
@@ -111,6 +116,16 @@ $(document).ready(function () {
             theirScore++;
             updateScores();
             resetChoices();
+            checkEnd();
+        }
+    }
+
+    function checkEnd(){
+        if (myScore === 3){
+            $("h2").text("You win!")
+        }
+        if(theirScore === 3){
+            $("h2").text("You lose!")
         }
     }
 
@@ -120,12 +135,13 @@ $(document).ready(function () {
         updateScores();
         database.ref().child("player1Choice").set("");
         database.ref().child("player2Choice").set("");
-        $("h2").text("You chose wisely! You're on your way to victory!")
+        $("h2").text("You chose wisely!")
+        checkEnd();
 
     }
     function updateScores() {
-        $(".my-score").text("My Score: " + myScore);
-        $(".their-score").text("Their Score: " + theirScore);
+        $(".my-score").html("My Score: " + myScore);
+        $(".their-score").html("Their Score: " + theirScore);
     }
 
     function resetChoices() {
